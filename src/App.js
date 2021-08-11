@@ -54,7 +54,7 @@ function App() {
 
     return (
 
-        <div className="App">
+        <div className="App col-12">
             <MyNavBar />
             <div className="input">
 
@@ -79,24 +79,39 @@ function App() {
                 </Form>
 
             </div>
-            <div className="card">
-                <myCard />
-                <Row className="justify-content-center mt-5 mb-5">
-                    <Card style={{ width: "18rem" }}>
-                        <Card.Body>
-                            <Card.Title>{userName}</Card.Title>
-                            <Card.Title>{name}</Card.Title>
-                            <Card.Link href={repositories}>
-                            <Card.Text>Repositories</Card.Text>
-                            </Card.Link>
-                            <Card.Link href={organisations}>
-                                <Card.Text>Organisations</Card.Text>
-                            </Card.Link>
+            <div className="row">
+                <div className="card col-6">
+                    <myCard />
+                    <Col>
+                        <Row className="justify-content-center mt-5 mb-5">
+                            <Card style={{ width: "18rem" }}>
+                                <Card.Body>
+                                    <Card.Title>{userName}</Card.Title>
+                                    <Card.Title>{name}</Card.Title>
+                                    <Card.Link href={organisations}>
+                                        <Card.Text>Organisations</Card.Text>
+                                    </Card.Link>
 
-                        </Card.Body>
-                    </Card>
-
-                </Row>
+                                </Card.Body>
+                            </Card>
+                        </Row>
+                    </Col>
+                </div>
+                <div className="card col-6">
+                    <Col>
+                        <Row className="justify-content-center mt-5 mb-5">
+                            <Card style={{ width: "18rem" }}>
+                                <Card.Body>
+                                    <Card.Title>{userName}</Card.Title>
+                                    <Card.Title>{name}</Card.Title>
+                                    <Card.Link href={repositories}>
+                                        <Card.Text>Repositories</Card.Text>
+                                    </Card.Link>
+                                </Card.Body>
+                            </Card>
+                        </Row>
+                    </Col>
+                </div>
             </div>
             <header className="App-header"></header>
         </div >

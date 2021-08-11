@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 const MyNavBar = () => {
     return (
-        <Navbar bg="light" variant="dark">
+        <Navbar bg="primary" variant="dark">
             <Navbar.Brand href="#home">
                 <img
                     src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
