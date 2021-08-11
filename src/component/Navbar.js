@@ -21,7 +21,7 @@ const MyNavBar = () => {
                     width="80"
                     height="21"
                     className="d-inline-block align-items-center"
-                    alt="Octopus GitHub"
+                    alt="GitHub"
                 />
             </Navbar.Brand>
         </Navbar>

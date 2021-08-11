@@ -20,20 +20,15 @@ function App() {
         organizations_url
     }) => {
         setName(name);
-       
         setUserName(login);
-     
         setRepositories(repos_url);
-        console.log(repos_url);
         setOrganisations(organizations_url);
         setRepositoriesUrl(html_url);
-        console.log(html_url);
     };
 
     const handleSearch = e => {
         setUserInput(e.target.value);
     };
-    console.log(userInput);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,20 +43,20 @@ function App() {
             });
     };
 
-    // useEffect(() => {
-    // 	fetch("https://api.github.com/users/scsanchez")
-    // 		.then(res => res.json())
-    // 		.then(data => {
-    // 			console.log(data);
-    // 			setData(data);
-    // 		});
-    // }, []);
+    useEffect(() => {
+        fetch("https://api.github.com/users/example")
+            .then(res => res.json())
+            .then(data => {
+                setData(data);
+            });
+    }, []);
 
     return (
-              
+
         <div className="App">
             <MyNavBar />
             <div className="input">
+
                 <Form onSubmit={handleSubmit}>
                     <Row className="justify-content-center mt-5 mb-5">
                         <Col className="my-1 col-2">
@@ -71,31 +66,33 @@ function App() {
                                 Name
 							</Form.Label>
                             <Form.Control
-                                sm={3}
                                 id="inlineFormInputName"
                                 placeholder="Introduce username"
                                 onChange={handleSearch}
                             />
                         </Col>
-                        <Col sm={3} className="my-1">
-                            <Button type="submit">Submit</Button>
+                        <Col className="my-1 col-1">
+                            <Button type="submit">Search</Button>
                         </Col>
                     </Row>
                 </Form>
+
             </div>
             <div className="card">
-                <Card style={{ width: "18rem" }}>
-                    <Card.Body>
-                        <Card.Title>{userName}</Card.Title>
-                        <Card.Title>{name}</Card.Title>
-                        <Card.Text>{repositories}</Card.Text>
-                        <Card.Text>{organisations}</Card.Text>
-                    </Card.Body>
-                </Card>
+                <Row className="justify-content-center mt-5 mb-5">
+                    <Card style={{ width: "18rem" }}>
+                        <Card.Body>
+                            <Card.Title>{userName}</Card.Title>
+                            <Card.Title>{name}</Card.Title>
+                            <Card.Text>{repositories}</Card.Text>
+                            <Card.Text>{organisations}</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Row>
             </div>
             <header className="App-header"></header>
-        </div>
-        
+        </div >
+
     );
 }
 
