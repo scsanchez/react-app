@@ -7,6 +7,7 @@ import myCard from "/workspace/react-app/src/component/Card.js";
 function App() {
     const [name, setName] = useState("");
     const [userName, setUserName] = useState("");
+    const [bio, setBio] = useState("");
     const [repositories, setRepositories] = useState("");
     const [repositoriesUrl, setRepositoriesUrl] = useState("");
     const [organisations, setOrganisations] = useState("");
@@ -16,12 +17,14 @@ function App() {
     const setData = ({
         name,
         login,
+        bio,
         repos_url,
         html_url,
         organizations_url
     }) => {
         setName(name);
         setUserName(login);
+        setBio(bio);
         setRepositories(repos_url);
         setOrganisations(organizations_url);
         setRepositoriesUrl(html_url);
@@ -88,6 +91,7 @@ function App() {
                                 <Card.Body>
                                     <Card.Title>{userName}</Card.Title>
                                     <Card.Title>{name}</Card.Title>
+                                    <Card.Title>{bio}</Card.Title>
                                     <Card.Link href={organisations}>
                                         <Card.Text>Organisations</Card.Text>
                                     </Card.Link>
@@ -104,6 +108,7 @@ function App() {
                                 <Card.Body>
                                     <Card.Title>{userName}</Card.Title>
                                     <Card.Title>{name}</Card.Title>
+                                    <Card.Title>{bio}</Card.Title>
                                     <Card.Link href={repositories}>
                                         <Card.Text>Repositories</Card.Text>
                                     </Card.Link>
