@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card, Form, Col, Row } from "react-bootstrap";
+import MyNavBar from "/workspace/react-app/src/component/Navbar.js";
 
 function App() {
     const [name, setName] = useState("");
@@ -57,11 +58,13 @@ function App() {
     // }, []);
 
     return (
+              
         <div className="App">
+            <MyNavBar />
             <div className="input">
                 <Form onSubmit={handleSubmit}>
-                    <Row className="align-items-center">
-                        <Col className="my-1">
+                    <Row className="justify-content-center mt-5 mb-5">
+                        <Col className="my-1 col-2">
                             <Form.Label
                                 htmlFor="inlineFormInputName"
                                 visuallyHidden>
@@ -70,7 +73,7 @@ function App() {
                             <Form.Control
                                 sm={3}
                                 id="inlineFormInputName"
-                                placeholder="Username"
+                                placeholder="Introduce username"
                                 onChange={handleSearch}
                             />
                         </Col>
@@ -92,6 +95,7 @@ function App() {
             </div>
             <header className="App-header"></header>
         </div>
+        
     );
 }
 
