@@ -59,7 +59,7 @@ function App() {
 
                 <Form onSubmit={handleSubmit}>
                     <Row className="justify-content-center mt-5 mb-5">
-                        <Col className="my-1 col-2">
+                        <Col className="my-1 col-sm-2 ">
                             <Form.Label
                                 htmlFor="inlineFormInputName"
                                 visuallyHidden>
