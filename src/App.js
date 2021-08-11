@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card, Form, Col, Row } from "react-bootstrap";
 import MyNavBar from "/workspace/react-app/src/component/Navbar.js";
+import myCard from "/workspace/react-app/src/component/Card.js";
 
 function App() {
     const [name, setName] = useState("");
@@ -79,15 +80,22 @@ function App() {
 
             </div>
             <div className="card">
+                <myCard />
                 <Row className="justify-content-center mt-5 mb-5">
                     <Card style={{ width: "18rem" }}>
                         <Card.Body>
                             <Card.Title>{userName}</Card.Title>
                             <Card.Title>{name}</Card.Title>
-                            <Card.Text>{repositories}</Card.Text>
-                            <Card.Text>{organisations}</Card.Text>
+                            <Card.Link href={repositories}>
+                            <Card.Text>Repositories</Card.Text>
+                            </Card.Link>
+                            <Card.Link href={organisations}>
+                                <Card.Text>Organisations</Card.Text>
+                            </Card.Link>
+
                         </Card.Body>
                     </Card>
+
                 </Row>
             </div>
             <header className="App-header"></header>
