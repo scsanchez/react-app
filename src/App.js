@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card, Form, Col, Row } from "react-bootstrap";
-import MyNavBar from "/workspace/react-app/src/component/Navbar.js";
-import myCard from "/workspace/react-app/src/component/Card.js";
+import MyNavBar from "/workspace/react-app/src/component/Navbar.jsx";
+import MyCard from "/workspace/react-app/src/component/Card.jsx";
 
 function App() {
     const [name, setName] = useState("");
@@ -13,6 +13,7 @@ function App() {
     const [organisations, setOrganisations] = useState("");
     const [userInput, setUserInput] = useState("");
     const [error, setError] = useState("");
+
 
     const setData = ({
         name,
@@ -82,9 +83,13 @@ function App() {
                 </Form>
 
             </div>
+            <div className="row justify-content-center mt-5 mb-5">
+            <MyCard />
+            </div>
             <div className="row">
+
                 <div className="card col-6">
-                    <myCard />
+
                     <Col>
                         <Row className="justify-content-center mt-5 mb-5">
                             <Card style={{ width: "18rem" }}>
