@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Card, Form, Col, Row } from "react-bootstrap";
+import { Button, Form, Col, Row } from "react-bootstrap";
 import MyNavBar from "/workspace/react-app/src/component/Navbar.jsx";
 import MyCardRepositories from "/workspace/react-app/src/component/Card-repositories.jsx";
 import MyCardOrganisations from "/workspace/react-app/src/component/Card-organisations.jsx";
 import Spinner from 'react-bootstrap/Spinner'
 
 function App() {
-    const [userInput, setUserInput] = useState("");
-    const [error, setError] = useState("");
+    const [userInput, setUserInput] = useState();
     const [arrayRepos, setArrayRepos] = useState();
     const [arrayOrganisations, setArrayOrganisations] = useState();
 
@@ -19,22 +18,30 @@ function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch("https://api.github.com/users/" + userInput + "/orgs")
-            .then(res => res.json())
-            .then(data => {
-                if (data.message) {
-                    setError(data.message);
-                } else {
-                    setArrayOrganisations(data);
+            .then(function (response) {
+                if (!response.ok) {
+                    throw Error(response.statusText);
                 }
+                return response.json();
+            })
+            .then(function (responseAsJson) {
+                setArrayOrganisations(responseAsJson);
+               })
+            .catch(function (error) {
+                console.log('Looks like there was a problem: \n', error);
             });
         fetch("https://api.github.com/users/" + userInput + "/repos")
-            .then(res => res.json())
-            .then(data => {
-                if (data.message) {
-                    setError(data.message);
-                } else {
-                    setArrayRepos(data);
+            .then(function (response) {
+                if (!response.ok) {
+                    throw Error(response.statusText);
                 }
+                return response.json();
+            })
+            .then(function (responseAsJson) {
+                setArrayRepos(responseAsJson);
+               })
+            .catch(function (error) {
+                console.log('Looks like there was a problem: \n', error);
             });
     };
 
@@ -42,7 +49,6 @@ function App() {
         <div className="App col-12">
             <MyNavBar />
             <div className="input">
-
                 <Form onSubmit={handleSubmit}>
                     <Row className="justify-content-center mt-5 mb-5">
                         <Col className="my-1 col-sm-2 ">
@@ -67,17 +73,16 @@ function App() {
             </div>
             <div className="row">
                 <div className="col d-inline ">
-                {arrayOrganisations ? arrayOrganisations.map((e, index) => {
-                    return <MyCardOrganisations key={index} data={e} />
-                }) : ""}
+                    {arrayOrganisations ? arrayOrganisations.map((e, index) => {
+                        return <MyCardOrganisations key={index} data={e} />
+                    }) : userInput ? <Spinner animation="border" /> : ""}
                 </div>
                 <div className="col inline-block">
-                {arrayRepos ? arrayRepos.map((e, index) => {
-                    return <MyCardRepositories key={index} data={e} />
-                }) : userInput ? <Spinner animation="border" /> :""}
+                    {arrayRepos ? arrayRepos.map((e, index) => {
+                        return <MyCardRepositories key={index} data={e} />
+                    }) : userInput ? <Spinner animation="border" /> : ""}
                 </div>
             </div>
-            <header className="App-header"></header>
         </div >
 
     );
