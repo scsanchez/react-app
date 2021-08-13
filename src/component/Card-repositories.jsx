@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Button, Card, Form, Col, Row } from "react-bootstrap";
+import React from "react";
+import { Card, Button } from "react-bootstrap";
 
 const MyCardRepositories = (props) => {
     const data = props.data
     return (
-        <Card style={{ width: "18rem" }}>
+        <Card className= "card inline-block">
             <Card.Body>
                 <Card.Title>{data.name}</Card.Title>
                 <Card.Text>{data.description}</Card.Text>
-                <Button href={data.html_url} target="_blank" variant="primary" text-center>Go</Button>
+                <Button href={data.html_url} target="_blank" variant="primary" text-center>repositorie Page</Button>
             </Card.Body>
         </Card>
     );

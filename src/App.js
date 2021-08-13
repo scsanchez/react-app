@@ -46,7 +46,7 @@ function App() {
     };
 
     return (
-        <div className="App col-12">
+        <div className="App">
             <MyNavBar />
             <div className="input">
                 <Form onSubmit={handleSubmit}>
@@ -72,12 +72,12 @@ function App() {
             <div className="row justify-content-center mt-5 mb-5">
             </div>
             <div className="row">
-                <div className="col d-inline ">
+                <div className="col centered">
                     {arrayOrganisations ? arrayOrganisations.map((e, index) => {
                         return <MyCardOrganisations key={index} data={e} />
                     }) : userInput ? <Spinner animation="border" /> : ""}
                 </div>
-                <div className="col inline-block">
+                <div className="col">
                     {arrayRepos ? arrayRepos.map((e, index) => {
                         return <MyCardRepositories key={index} data={e} />
                     }) : userInput ? <Spinner animation="border" /> : ""}

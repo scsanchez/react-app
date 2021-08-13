@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Button, Card, Row } from "react-bootstrap";
+import React from "react";
+import { Card, Button } from "react-bootstrap";
 
 const MyCardOrganisations = (props) => {
     const data = props.data
+    const login =props.data.login
     return (
-        <Card style={{ width: "18rem" }}>
+        <Card className= "card inline-block">
             <Card.Body>
                 <Card.Title>{data.login}</Card.Title>
                 <Card.Text>{data.description}</Card.Text>
-                <Button href={data.url} target="_blank" variant="primary" text-center>Go</Button>
+                <Button href={"https://github.com/orgs/"+ login} target="_blank" variant="primary" text-center>Organisation Page</Button>
             </Card.Body>
         </Card>
     );
 };
 
 export default MyCardOrganisations;
+
