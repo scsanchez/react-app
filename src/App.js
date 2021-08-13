@@ -2,19 +2,15 @@ import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card, Form, Col, Row } from "react-bootstrap";
 import MyNavBar from "/workspace/react-app/src/component/Navbar.jsx";
-import MyCard from "/workspace/react-app/src/component/Card.jsx";
+import MyCardRepositories from "/workspace/react-app/src/component/Card-repositories.jsx";
+import MyCardOrganisations from "/workspace/react-app/src/component/Card-organisations.jsx";
+import Spinner from 'react-bootstrap/Spinner'
 
 function App() {
-    const [name, setName] = useState("");
-    const [userName, setUserName] = useState("");
-    const [bio, setBio] = useState("");
-    const [repositories, setRepositories] = useState("");
-    const [repositoriesUrl, setRepositoriesUrl] = useState("");
-    const [organisations, setOrganisations] = useState("");
     const [userInput, setUserInput] = useState("");
     const [error, setError] = useState("");
     const [arrayRepos, setArrayRepos] = useState();
-    const [data, setData] = useState();
+    const [arrayOrganisations, setArrayOrganisations] = useState();
 
     const handleSearch = e => {
         setUserInput(e.target.value);
@@ -22,13 +18,13 @@ function App() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("https://api.github.com/users/" + userInput)
+        fetch("https://api.github.com/users/" + userInput + "/orgs")
             .then(res => res.json())
             .then(data => {
                 if (data.message) {
                     setError(data.message);
                 } else {
-                    setData(data);
+                    setArrayOrganisations(data);
                 }
             });
         fetch("https://api.github.com/users/" + userInput + "/repos")
@@ -70,9 +66,16 @@ function App() {
             <div className="row justify-content-center mt-5 mb-5">
             </div>
             <div className="row">
-                {arrayRepos ? arrayRepos.map((e, index) => {
-                    return <MyCard key={index} data={e} />
+                <div className="col d-inline ">
+                {arrayOrganisations ? arrayOrganisations.map((e, index) => {
+                    return <MyCardOrganisations key={index} data={e} />
                 }) : ""}
+                </div>
+                <div className="col inline-block">
+                {arrayRepos ? arrayRepos.map((e, index) => {
+                    return <MyCardRepositories key={index} data={e} />
+                }) : userInput ? <Spinner animation="border" /> :""}
+                </div>
             </div>
             <header className="App-header"></header>
         </div >
