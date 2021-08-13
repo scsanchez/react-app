@@ -13,23 +13,8 @@ function App() {
     const [organisations, setOrganisations] = useState("");
     const [userInput, setUserInput] = useState("");
     const [error, setError] = useState("");
-
-
-    const setData = ({
-        name,
-        login,
-        bio,
-        repos_url,
-        html_url,
-        organizations_url
-    }) => {
-        setName(name);
-        setUserName(login);
-        setBio(bio);
-        setRepositories(repos_url);
-        setOrganisations(organizations_url);
-        setRepositoriesUrl(html_url);
-    };
+    const [arrayRepos, setArrayRepos] = useState();
+    const [data, setData] = useState();
 
     const handleSearch = e => {
         setUserInput(e.target.value);
@@ -37,7 +22,7 @@ function App() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("https://api.github.com/users/".concat(userInput))
+        fetch("https://api.github.com/users/" + userInput)
             .then(res => res.json())
             .then(data => {
                 if (data.message) {
@@ -46,18 +31,18 @@ function App() {
                     setData(data);
                 }
             });
-    };
-
-    useEffect(() => {
-        fetch("https://api.github.com/users/example")
+        fetch("https://api.github.com/users/" + userInput + "/repos")
             .then(res => res.json())
             .then(data => {
-                setData(data);
+                if (data.message) {
+                    setError(data.message);
+                } else {
+                    setArrayRepos(data);
+                }
             });
-    }, []);
+    };
 
     return (
-
         <div className="App col-12">
             <MyNavBar />
             <div className="input">
@@ -72,7 +57,7 @@ function App() {
 							</Form.Label>
                             <Form.Control
                                 id="inlineFormInputName"
-                                placeholder="Introduce username"
+                                placeholder="username"
                                 onChange={handleSearch}
                             />
                         </Col>
@@ -81,47 +66,13 @@ function App() {
                         </Col>
                     </Row>
                 </Form>
-
             </div>
             <div className="row justify-content-center mt-5 mb-5">
-            <MyCard />
             </div>
             <div className="row">
-
-                <div className="card col-6">
-
-                    <Col>
-                        <Row className="justify-content-center mt-5 mb-5">
-                            <Card style={{ width: "18rem" }}>
-                                <Card.Body>
-                                    <Card.Title>{userName}</Card.Title>
-                                    <Card.Title>{name}</Card.Title>
-                                    <Card.Title>{bio}</Card.Title>
-                                    <Card.Link href={organisations}>
-                                        <Card.Text>Organisations</Card.Text>
-                                    </Card.Link>
-
-                                </Card.Body>
-                            </Card>
-                        </Row>
-                    </Col>
-                </div>
-                <div className="card col-6">
-                    <Col>
-                        <Row className="justify-content-center mt-5 mb-5">
-                            <Card style={{ width: "18rem" }}>
-                                <Card.Body>
-                                    <Card.Title>{userName}</Card.Title>
-                                    <Card.Title>{name}</Card.Title>
-                                    <Card.Title>{bio}</Card.Title>
-                                    <Card.Link href={repositories}>
-                                        <Card.Text>Repositories</Card.Text>
-                                    </Card.Link>
-                                </Card.Body>
-                            </Card>
-                        </Row>
-                    </Col>
-                </div>
+                {arrayRepos ? arrayRepos.map((e, index) => {
+                    return <MyCard key={index} data={e} />
+                }) : ""}
             </div>
             <header className="App-header"></header>
         </div >
