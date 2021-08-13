@@ -58,7 +58,7 @@ function App() {
                             <Form.Control
                                 id="input"
                                 placeholder="username"
-                             />
+                            />
                         </Col>
                         <Col sm={1}>
                             <Button type="submit">Search</Button>
@@ -72,9 +72,11 @@ function App() {
                     <div className="title">
                         <h2>Organisations</h2>
                     </div>
-                    {arrayOrganisations ? arrayOrganisations.map((e, index) => {
-                        return <MyCardOrganisations key={index} data={e} />
-                    }) : userInput ? <Spinner animation="border" /> : ""}
+                    <div className="repositories">
+                        {arrayOrganisations ? arrayOrganisations.map((e, index) => {
+                            return <MyCardOrganisations key={index} data={e} />
+                        }) : userInput ? <Spinner animation="border" /> : ""}
+                    </div>
                 </div>
                 <div className="col">
                     <div className="title">

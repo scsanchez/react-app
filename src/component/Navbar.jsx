@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 const MyNavBar = () => {
     return (
-        <Navbar bg="light" variant="dark">
+        <Navbar bg="light">
             <Navbar.Brand href="#home">
                 <img
                     src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"

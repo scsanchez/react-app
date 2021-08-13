@@ -6,8 +6,7 @@
     text-align: center;
 }
 
-#repositories{
-    overflow-y: auto;
-    height: 20rem;
-    
+.repositories{
+    overflow-y: auto;   
+    max-height: 70vh;
 }
