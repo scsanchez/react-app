@@ -5,11 +5,11 @@ const MyCardOrganisations = (props) => {
     const data = props.data
     const login =props.data.login
     return (
-        <Card className= "card inline-block">
+        <Card className= "card inline">
             <Card.Body>
                 <Card.Title>{data.login}</Card.Title>
                 <Card.Text>{data.description}</Card.Text>
-                <Button href={"https://github.com/orgs/"+ login} target="_blank" variant="primary" text-center>Organisation Page</Button>
+                <Button href={"https://github.com/orgs/"+ login} target="_blank" variant="secondary" >Organisation Page</Button>
             </Card.Body>
         </Card>
     );

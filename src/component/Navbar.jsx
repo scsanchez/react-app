@@ -3,19 +3,19 @@ import Navbar from "react-bootstrap/Navbar";
 
 const MyNavBar = () => {
     return (
-        <Navbar bg="primary" variant="dark">
+        <Navbar bg="light" variant="dark">
             <Navbar.Brand href="#home">
                 <img
                     src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-                    width="80"
-                    height="60"
+                    width="40"
+                    height="30"
                     className="d-inline-block align-items-center"
                     alt="Octopus GitHub"
                 />
                 <img
                     src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
-                    width="80"
-                    height="21"
+                    width="40"
+                    height="11"
                     className="d-inline-block align-items-center"
                     alt="GitHub"
                 />

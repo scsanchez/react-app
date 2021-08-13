@@ -16,6 +16,7 @@ function App() {
     };
 
     const handleSubmit = (e) => {
+        setUserInput(e.target.value)
         e.preventDefault();
         fetch("https://api.github.com/users/" + userInput + "/orgs")
             .then(function (response) {
@@ -72,12 +73,12 @@ function App() {
             <div className="row justify-content-center mt-5 mb-5">
             </div>
             <div className="row">
-                <div className="col centered">
+                <div className="col"> Organisations
                     {arrayOrganisations ? arrayOrganisations.map((e, index) => {
                         return <MyCardOrganisations key={index} data={e} />
                     }) : userInput ? <Spinner animation="border" /> : ""}
                 </div>
-                <div className="col">
+                <div className="col">Repositories
                     {arrayRepos ? arrayRepos.map((e, index) => {
                         return <MyCardRepositories key={index} data={e} />
                     }) : userInput ? <Spinner animation="border" /> : ""}
