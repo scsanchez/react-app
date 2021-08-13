@@ -5,18 +5,15 @@ import MyNavBar from "/workspace/react-app/src/component/Navbar.jsx";
 import MyCardRepositories from "/workspace/react-app/src/component/Card-repositories.jsx";
 import MyCardOrganisations from "/workspace/react-app/src/component/Card-organisations.jsx";
 import Spinner from 'react-bootstrap/Spinner'
+import "/workspace/react-app/src/App.css"
 
 function App() {
-    const [userInput, setUserInput] = useState();
     const [arrayRepos, setArrayRepos] = useState();
     const [arrayOrganisations, setArrayOrganisations] = useState();
-
-    const handleSearch = e => {
-        setUserInput(e.target.value);
-    };
+    const userInput = "";
 
     const handleSubmit = (e) => {
-        setUserInput(e.target.value)
+        const userInput = document.getElementById("input").value;
         e.preventDefault();
         fetch("https://api.github.com/users/" + userInput + "/orgs")
             .then(function (response) {
@@ -27,7 +24,7 @@ function App() {
             })
             .then(function (responseAsJson) {
                 setArrayOrganisations(responseAsJson);
-               })
+            })
             .catch(function (error) {
                 console.log('Looks like there was a problem: \n', error);
             });
@@ -40,7 +37,7 @@ function App() {
             })
             .then(function (responseAsJson) {
                 setArrayRepos(responseAsJson);
-               })
+            })
             .catch(function (error) {
                 console.log('Looks like there was a problem: \n', error);
             });
@@ -52,36 +49,42 @@ function App() {
             <div className="input">
                 <Form onSubmit={handleSubmit}>
                     <Row className="justify-content-center mt-5 mb-5">
-                        <Col className="my-1 col-sm-2 ">
+                        <Col sm={2}>
                             <Form.Label
                                 htmlFor="inlineFormInputName"
                                 visuallyHidden>
-                                Name
+                                Username
 							</Form.Label>
                             <Form.Control
-                                id="inlineFormInputName"
+                                id="input"
                                 placeholder="username"
-                                onChange={handleSearch}
-                            />
+                             />
                         </Col>
-                        <Col className="my-1 col-1">
+                        <Col sm={1}>
                             <Button type="submit">Search</Button>
                         </Col>
                     </Row>
                 </Form>
             </div>
-            <div className="row justify-content-center mt-5 mb-5">
-            </div>
+
             <div className="row">
-                <div className="col"> Organisations
+                <div className="col scroll">
+                    <div className="title">
+                        <h2>Organisations</h2>
+                    </div>
                     {arrayOrganisations ? arrayOrganisations.map((e, index) => {
                         return <MyCardOrganisations key={index} data={e} />
                     }) : userInput ? <Spinner animation="border" /> : ""}
                 </div>
-                <div className="col">Repositories
-                    {arrayRepos ? arrayRepos.map((e, index) => {
-                        return <MyCardRepositories key={index} data={e} />
-                    }) : userInput ? <Spinner animation="border" /> : ""}
+                <div className="col">
+                    <div className="title">
+                        <h2>Repositories</h2>
+                    </div>
+                    <div className="repositories">
+                        {arrayRepos ? arrayRepos.map((e, index) => {
+                            return <MyCardRepositories key={index} data={e} />
+                        }) : userInput ? <Spinner animation="border" /> : ""}
+                    </div>
                 </div>
             </div>
         </div >

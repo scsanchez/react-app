@@ -5,7 +5,7 @@ const MyCardOrganisations = (props) => {
     const data = props.data
     const login =props.data.login
     return (
-        <Card className= "card inline">
+        <Card>
             <Card.Body>
                 <Card.Title>{data.login}</Card.Title>
                 <Card.Text>{data.description}</Card.Text>

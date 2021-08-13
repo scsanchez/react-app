@@ -2,3 +2,12 @@
   text-align: center;
 }
 
+#title{
+    text-align: center;
+}
+
+#repositories{
+    overflow-y: auto;
+    height: 20rem;
+    
+}
