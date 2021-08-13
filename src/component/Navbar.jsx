@@ -6,16 +6,16 @@ const MyNavBar = () => {
         <Navbar bg="light" variant="dark">
             <Navbar.Brand href="#home">
                 <img
-                    src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+                    src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                     width="40"
-                    height="30"
+                    height="40"
                     className="d-inline-block align-items-center"
-                    alt="Octopus GitHub"
+                    alt="GitHub logo"
                 />
                 <img
                     src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
-                    width="40"
-                    height="11"
+                    width="70"
+                    height="21"
                     className="d-inline-block align-items-center"
                     alt="GitHub"
                 />
