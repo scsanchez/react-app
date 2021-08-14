@@ -18,7 +18,6 @@ export const getRepositoriesByUserName = (userName) => {
 }
 
 
-
 const onResponse = (response) => {
     if (!response.ok) {
         throw Error(response.status);
@@ -27,7 +26,7 @@ const onResponse = (response) => {
 }
 
 const onError = (error) => {
-    
+    //aqui va toaster
     console.error('Looks like there was a problem: ', error);
     
 }

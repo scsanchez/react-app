@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import MyNavBar from "./component/Navbar.jsx";
+import Header from "./component/Header.jsx";
 import RepositoryCard from "./component/RepositoryCard.jsx";
 import OrganizationCard from "./component/OrganizationCard.jsx";
 import Footer from "./component/Footer.jsx";
@@ -67,16 +67,16 @@ function App() {
     return (
         <div className="App">
             <header>
-                <MyNavBar />
+                <Header />
             </header>
             <main>
                 
                 <div className="container">
-                    <i className="fas fa-search"></i>                 
+                                    
              
                         <Form onSubmit={handleSubmit}>
                             <Row className="justify-content-center mt-5 mb-5">
-                                <Col sm={3}>
+                                <Col sm={3} className="col-auto">
                                     <Form.Label
                                         htmlFor="inlineFormInputName"
                                         visuallyHidden>
@@ -88,8 +88,8 @@ function App() {
                                         onChange={handleChange}
                                     />
                                 </Col>
-                                <Col sm={1}>
-                                    <Button type="submit">Search</Button>
+                                <Col sm={1}  className="col-auto">
+                                    <Button type="submit"><i className="fas fa-search"></i> </Button>
                                 </Col>
                             </Row>
                         </Form>

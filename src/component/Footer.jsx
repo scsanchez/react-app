@@ -1,20 +1,22 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
+import Nav from 'react-bootstrap/Nav'
 
 const Footer = () => {
     return (
-        <Navbar bg="light" className="fixed-bottom"  >
-            <Navbar.Brand href="https://github.com/scsanchez" target="_blank">
+        <Nav bg="light" className="fixed-bottom d-inline-block align-items-center ms-4" >
+            <Nav.Item>
                 <img
                     src="https://avatars.githubusercontent.com/u/81589625?v=4"
+                    href="https://github.com/scsanchez"
                     width="35"
-                    height="35"         
-                    className="d-inline-block align-items-center ms-4"
+                    height="35"                    
+                    className="d-inline-block align-items-center"
                     alt="GitHub logo"
-                />
-            </Navbar.Brand>
-            <Navbar.Brand>Made by Sergio Carrascal</Navbar.Brand>
-        </Navbar>
+                />                
+            </Nav.Item>
+            <Nav.Item >Made by Sergio Carrascal</Nav.Item>
+        </Nav>
     );
 };
 export default Footer;
+
