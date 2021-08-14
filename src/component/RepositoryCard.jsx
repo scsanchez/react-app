@@ -1,8 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import "/workspace/react-app/src/component/Card.css"
 
-const MyCardRepositories = (props) => {
+const RepositoryCard = (props) => {
     const data = props.data
     return (
         <Card className="mx-auto">
@@ -15,5 +14,5 @@ const MyCardRepositories = (props) => {
     );
 };
 
-export default MyCardRepositories;
+export default RepositoryCard;
 
