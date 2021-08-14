@@ -8,7 +8,6 @@ import "./App.css"
 import { getOrganizationsByUserName, getRepositoriesByUserName } from "./ApiMangement.js";
 
 
-
 function App() {
     const [repositories, setRepositories] = useState([]);
     const [organizations, setOrganizations] = useState([]);
@@ -65,62 +64,61 @@ function App() {
 
     return (
         <div className="App">
+
             <header>
                 <Header />
             </header>
+
             <main>
-                
                 <div className="container">
-                                    
-             
-                        <Form onSubmit={handleSubmit}>
-                            <Row className="justify-content-sm-center mt-5 mb-5">
-                                <Col sm={3}>
-                                    <Form.Label
-                                        htmlFor="inlineFormInputName"
-                                        visuallyHidden>
-                                        Username
+                    <Form onSubmit={handleSubmit}>
+                        <Row className="justify-content-sm-center mt-5 mb-5">
+                            <Col sm={3}>
+                                <Form.Label
+                                    htmlFor="inlineFormInputName"
+                                    visuallyHidden>
+                                    Username
                                      </Form.Label>
-                                    <Form.Control
-                                        id="input"
-                                        placeholder="username"
-                                        onChange={handleChange}
-                                    />
-                                </Col>
-                                <Col sm={1} className="col-md-auto">
-                                    <Button type="submit"><i className="fas fa-search"></i> </Button>
-                                </Col>
-                            </Row>
-                        </Form>
-
-                        <Row>
-                            <Col>
-                                <div>
-                                    <h2>Organizations</h2>
-                                </div>
-                                {isFetchingOrganizations ?
-                                    <Spinner animation="border" /> :
-                                    <div className="repositories">
-                                        {printOrganizations()}
-                                    </div>
-                                }
+                                <Form.Control
+                                    id="input"
+                                    placeholder="username"
+                                    onChange={handleChange}
+                                />
                             </Col>
-                            <Col>
-                                <div>
-                                    <h2>Repositories</h2>
-                                </div>
-
-                                {isFetchingRepositories ? <Spinner animation="border" /> :
-                                    <div className="repositories">
-                                        {printRepositories()}
-                                    </div>
-                                }
+                            <Col sm={1} className="col-md-auto">
+                                <Button type="submit"><i className="fas fa-search"></i> </Button>
                             </Col>
                         </Row>
-                    </div>
-            </main>
-        </div >
+                    </Form>
 
+                    <Row>
+                        <Col>
+                            <div>
+                                <h2>Organizations</h2>
+                            </div>
+                            {isFetchingOrganizations ?
+                                <Spinner animation="border" /> :
+                                <div className="repositories">
+                                    {printOrganizations()}
+                                </div>
+                            }
+                        </Col>
+                        <Col>
+                            <div>
+                                <h2>Repositories</h2>
+                            </div>
+
+                            {isFetchingRepositories ? <Spinner animation="border" /> :
+                                <div className="repositories">
+                                    {printRepositories()}
+                                </div>
+                            }
+                        </Col>
+                    </Row>
+                </div>
+            </main>
+
+        </div >
     );
 }
 
