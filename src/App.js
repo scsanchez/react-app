@@ -23,18 +23,19 @@ function App() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (searchValue != "") {
+            setIsFetchingOrganizations(true);
+            getOrganizationsByUserName(searchValue).then((organizations) => {
+                setIsFetchingOrganizations(false);
+                setOrganizations(organizations);
+            });
 
-        setIsFetchingOrganizations(true);
-        getOrganizationsByUserName(searchValue).then((organizations) => {
-            setIsFetchingOrganizations(false);
-            setOrganizations(organizations);
-        });
-
-        setIsFetchingRepositories(true);
-        getRepositoriesByUserName(searchValue).then((repositories) => {
-            setIsFetchingRepositories(false);
-            setRepositories(repositories);
-        });
+            setIsFetchingRepositories(true);
+            getRepositoriesByUserName(searchValue).then((repositories) => {
+                setIsFetchingRepositories(false);
+                setRepositories(repositories);
+            });
+        }
     };
 
     const printOrganizations = () => {
