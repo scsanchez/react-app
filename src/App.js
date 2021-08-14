@@ -3,7 +3,6 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import Header from "./component/Header.jsx";
 import RepositoryCard from "./component/RepositoryCard.jsx";
 import OrganizationCard from "./component/OrganizationCard.jsx";
-import Footer from "./component/Footer.jsx";
 import Spinner from 'react-bootstrap/Spinner'
 import "./App.css"
 import { getOrganizationsByUserName, getRepositoriesByUserName } from "./ApiMangement.js";
@@ -75,20 +74,20 @@ function App() {
                                     
              
                         <Form onSubmit={handleSubmit}>
-                            <Row className="justify-content-center mt-5 mb-5">
-                                <Col sm={3} className="col-auto">
+                            <Row className="justify-content-sm-center mt-5 mb-5">
+                                <Col sm={3}>
                                     <Form.Label
                                         htmlFor="inlineFormInputName"
                                         visuallyHidden>
                                         Username
-                            </Form.Label>
+                                     </Form.Label>
                                     <Form.Control
                                         id="input"
                                         placeholder="username"
                                         onChange={handleChange}
                                     />
                                 </Col>
-                                <Col sm={1}  className="col-auto">
+                                <Col sm={1} className="col-md-auto">
                                     <Button type="submit"><i className="fas fa-search"></i> </Button>
                                 </Col>
                             </Row>
@@ -120,9 +119,6 @@ function App() {
                         </Row>
                     </div>
             </main>
-                <footer>
-                    <Footer />
-                </footer>
         </div >
 
     );
