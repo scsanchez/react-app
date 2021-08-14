@@ -7,16 +7,16 @@ const MyNavBar = () => {
             <Navbar.Brand href="#home">
                 <img
                     src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-                    width="40"
-                    height="40"
-                    className="d-inline-block align-items-center"
+                    width="50"
+                    height="50"         
+                    className="d-inline-block align-items-center ms-4"
                     alt="GitHub logo"
                 />
                 <img
                     src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png"
                     width="70"
                     height="21"
-                    className="d-inline-block align-items-center"
+                    className="d-inline-block align-items-center"                   
                     alt="GitHub"
                 />
             </Navbar.Brand>

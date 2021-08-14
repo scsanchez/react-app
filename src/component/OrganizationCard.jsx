@@ -3,9 +3,8 @@ import { Card, Button } from "react-bootstrap";
 
 const OrganizationCard = (props) => {
     const organization = props.organization;
-
     return (
-        <Card className="mx-auto">
+        <Card className="mx-auto mb-4">
             <Card.Body>
                 <Card.Title>{organization.login}</Card.Title>
                 <Card.Text>{organization.description}</Card.Text>
