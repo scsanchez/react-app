@@ -10,7 +10,8 @@ export const getOrganizationsByUserName = (userName) => {
 export const getRepositoriesByUserName = (userName) => {
     const repositoriesURL = `https://api.github.com/users/${userName}/repos`;
 
-    return fetch(repositoriesURL).then(onResponse)
+    return fetch(repositoriesURL)
+        .then(onResponse)
         .catch(onError);
 
 }

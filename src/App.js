@@ -23,7 +23,7 @@ function App() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (searchValue != "") {
+        if (searchValue !== "") {
             setIsFetchingOrganizations(true);
             getOrganizationsByUserName(searchValue).then((organizations) => {
                 setIsFetchingOrganizations(false);
@@ -39,15 +39,17 @@ function App() {
     };
 
     const printOrganizations = () => {
+        if (organizations !== undefined){
         return organizations.map((organization, index) => {
             return <OrganizationCard key={index} organization={organization} />
-        })
+        })}
     }
 
     const printRepositories = () => {
+        if (repositories !== undefined){
         return repositories.map((repositorie, index) => {
             return <RepositoryCard key={index} repositorie={repositorie} />
-        })
+        })}
     }
 
     return (
@@ -80,7 +82,7 @@ function App() {
                     <Row>
                         <Col>
                             <div className="title">
-                                <h2>Organisations</h2>
+                                <h2>Organizations</h2>
                             </div>
                             {isFetchingOrganizations ?
                                 <Spinner animation="border" /> :
