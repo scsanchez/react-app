@@ -1,3 +1,4 @@
+
 export const getOrganizationsByUserName = (userName) => {
     const organizationsURL = `https://api.github.com/users/${userName}/orgs`;
 
@@ -20,12 +21,15 @@ export const getRepositoriesByUserName = (userName) => {
 
 const onResponse = (response) => {
     if (!response.ok) {
-        throw Error(response.statusText);
+        throw Error(response.status);
     }
     return response.json();
 }
+
 const onError = (error) => {
+    
     console.error('Looks like there was a problem: ', error);
+    
 }
 
 

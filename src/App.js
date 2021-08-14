@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, Col, Row } from "react-bootstrap";
 import MyNavBar from "./component/Navbar.jsx";
 import RepositoryCard from "./component/RepositoryCard.jsx";
@@ -25,35 +24,44 @@ function App() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (searchValue !== "") {
-            setIsFetchingOrganizations(true);
-            getOrganizationsByUserName(searchValue).then((organizations) => {
-                setIsFetchingOrganizations(false);
-                setOrganizations(organizations);
-            });
+        const trimedSearchValue = searchValue.trim();
 
-            setIsFetchingRepositories(true);
-            getRepositoriesByUserName(searchValue).then((repositories) => {
-                setIsFetchingRepositories(false);
-                setRepositories(repositories);
-            });
+        if (!trimedSearchValue.trim()) {
+            return;
         }
+
+        setIsFetchingOrganizations(true);
+        getOrganizationsByUserName(trimedSearchValue).then((organizations) => {
+            setIsFetchingOrganizations(false);
+            if (organizations) {
+                setOrganizations(organizations);
+            }
+        })
+            ;
+
+        setIsFetchingRepositories(true);
+        getRepositoriesByUserName(trimedSearchValue).then((repositories) => {
+            setIsFetchingRepositories(false);
+            if (repositories) {
+                setRepositories(repositories);
+            }
+        });
     };
 
     const printOrganizations = () => {
-        if (organizations !== undefined) {
-            return organizations.map((organization, index) => {
-                return <OrganizationCard key={index} organization={organization} />
-            })
-        }
+
+        return organizations.map((organization, index) => {
+            return <OrganizationCard key={index} organization={organization} />
+        })
+
     }
 
     const printRepositories = () => {
-        if (repositories !== undefined) {
-            return repositories.map((repositorie, index) => {
-                return <RepositoryCard key={index} repositorie={repositorie} />
-            })
-        }
+
+        return repositories.map((repositorie, index) => {
+            return <RepositoryCard key={index} repositorie={repositorie} />
+        })
+
     }
 
     return (
@@ -62,57 +70,59 @@ function App() {
                 <MyNavBar />
             </header>
             <main>
+                
                 <div className="container">
-
-                    <Form onSubmit={handleSubmit}>
-                        <Row className="justify-content-center mt-5 mb-5">
-                            <Col sm={3}>
-                                <Form.Label
-                                    htmlFor="inlineFormInputName"
-                                    visuallyHidden>
-                                    Username
+                    <i className="fas fa-search"></i>                 
+             
+                        <Form onSubmit={handleSubmit}>
+                            <Row className="justify-content-center mt-5 mb-5">
+                                <Col sm={3}>
+                                    <Form.Label
+                                        htmlFor="inlineFormInputName"
+                                        visuallyHidden>
+                                        Username
                             </Form.Label>
-                                <Form.Control
-                                    id="input"
-                                    placeholder="username"
-                                    onChange={handleChange}
-                                />
+                                    <Form.Control
+                                        id="input"
+                                        placeholder="username"
+                                        onChange={handleChange}
+                                    />
+                                </Col>
+                                <Col sm={1}>
+                                    <Button type="submit">Search</Button>
+                                </Col>
+                            </Row>
+                        </Form>
+
+                        <Row>
+                            <Col>
+                                <div>
+                                    <h2>Organizations</h2>
+                                </div>
+                                {isFetchingOrganizations ?
+                                    <Spinner animation="border" /> :
+                                    <div className="repositories">
+                                        {printOrganizations()}
+                                    </div>
+                                }
                             </Col>
-                            <Col sm={1}>
-                                <Button type="submit">Search</Button>
+                            <Col>
+                                <div>
+                                    <h2>Repositories</h2>
+                                </div>
+
+                                {isFetchingRepositories ? <Spinner animation="border" /> :
+                                    <div className="repositories">
+                                        {printRepositories()}
+                                    </div>
+                                }
                             </Col>
                         </Row>
-                    </Form>
-
-                    <Row>
-                        <Col>
-                            <div className="title">
-                                <h2>Organizations</h2>
-                            </div>
-                            {isFetchingOrganizations ?
-                                <Spinner animation="border" /> :
-                                <div className="repositories">
-                                    {printOrganizations()}
-                                </div>
-                            }
-                        </Col>
-                        <Col>
-                            <div className="title">
-                                <h2>Repositories</h2>
-                            </div>
-
-                            {isFetchingRepositories ? <Spinner animation="border" /> :
-                                <div className="repositories">
-                                    {printRepositories()}
-                                </div>
-                            }
-                        </Col>
-                    </Row>
-                </div>
+                    </div>
             </main>
-            <footer>
-                <Footer />
-            </footer>
+                <footer>
+                    <Footer />
+                </footer>
         </div >
 
     );
