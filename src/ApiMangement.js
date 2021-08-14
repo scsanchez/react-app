@@ -26,7 +26,6 @@ const onResponse = (response) => {
 }
 
 const onError = (error) => {
-    //aqui va toaster
     console.error('Looks like there was a problem: ', error);
     
 }
